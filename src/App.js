@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+import project1Img from './assets/project1.png';
+import project2Img from './assets/project2.png';
+import project3Img from './assets/project3.png';
+import project4Img from './assets/project4.png';
+import project6Img from './assets/project6.png';
+import project5Img from './assets/project5.png';
+
 function SkillCircle({ name, percentage, color }) {
   const [currentPercent, setCurrentPercent] = useState(0);
 
@@ -19,13 +26,13 @@ function SkillCircle({ name, percentage, color }) {
 
   return (
     <div className="flex flex-col items-center group cursor-pointer">
-      <div className="relative w-36 h-36 sm:w-40 sm:h-40 flex items-center justify-center mb-4">
+      <div className="relative w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center mb-3 filter drop-shadow-[0_0_8px_rgba(0,0,0,0.4)] group-hover:drop-shadow-[0_0_20px_rgba(56,189,248,0.45)] transition-all duration-300">
         <svg className="w-full h-full transform -rotate-90">
           <circle 
             cx="50%" 
             cy="50%" 
             r={radius} 
-            stroke="#1a2333" 
+            stroke="#0f172a" 
             strokeWidth="8" 
             fill="transparent" 
           />
@@ -44,12 +51,12 @@ function SkillCircle({ name, percentage, color }) {
             }}
           />
         </svg>
-        <span className="absolute text-xl sm:text-2xl font-bold text-white tracking-wider">
+        <span className="absolute text-lg sm:text-xl font-bold text-white tracking-wider group-hover:text-cyan-300 group-hover:scale-110 transition-all duration-300">
           {percentage}%
         </span>
       </div>
 
-      <h3 className="text-sm sm:text-base font-bold tracking-wide text-gray-400 opacity-80 group-hover:text-white group-hover:opacity-100 transition-all duration-300">
+      <h3 className="text-xs sm:text-sm font-bold tracking-wide text-gray-400 group-hover:text-cyan-400 transition-colors duration-300">
         {name}
       </h3>
     </div>
@@ -58,6 +65,19 @@ function SkillCircle({ name, percentage, color }) {
 
 function App() {
   const [activeNav, setActiveNav] = useState('Home');
+
+  useEffect(() => {
+    document.title = "Sara Madeeh — Portfolio";
+    
+    // إزالة أيقونة التبويب (Favicon) بشكل نهائي
+    const links = document.querySelectorAll("link[rel*='icon']");
+    links.forEach(link => link.parentNode.removeChild(link));
+    
+    const newLink = document.createElement('link');
+    newLink.rel = 'icon';
+    newLink.href = 'data:,';
+    document.getElementsByTagName('head')[0].appendChild(newLink);
+  }, []);
 
   const words = ["React-Engineer", "Front-End Developer"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -119,24 +139,64 @@ function App() {
 
   const visibleSkills = allSkills.slice(skillsPage * itemsPerPage, (skillsPage + 1) * itemsPerPage);
 
-  const [activeTab, setActiveTab] = useState("1st Section");
-  const projects = {
-    "1st Section": [
-      { id: 1, title: "Project 1", desc: "Simple Design With HTML & CSS", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Project+1" },
-      { id: 2, title: "Techno Market", desc: "Online Store HTML & CSS3 Design", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Techno+Market" },
-      { id: 3, title: "EduPlatform", desc: "Design With Bootstrap 5", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=EduPlatform" },
-      { id: 4, title: "Password Generator", desc: "React & JS Tool", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Password+Generator" },
-      { id: 5, title: "Portfolio Concept", desc: "React & Tailwind CSS", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Portfolio" },
-      { id: 6, title: "E-Commerce UI", desc: "Responsive Layout", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=E-Commerce" },
-    ],
-    "2nd Section": [
-      { id: 7, title: "Dashboard", desc: "React Admin Panel", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Dashboard" },
-      { id: 8, title: "Weather App", desc: "JavaScript API Integration", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Weather+App" },
-    ],
-    "3rd Section": [
-      { id: 9, title: "Task Manager", desc: "React State Management", img: "https://via.placeholder.com/400x300/121829/94a3b8?text=Task+Manager" },
-    ]
-  };
+  const [activeTab, setActiveTab] = useState("All Projects");
+
+  const myProjects = [
+    {
+      id: 1,
+      title: "EPIC TRAVEL VIBES",
+      desc: "An adventurous travel website featuring curated destination packages, adventure guides, and seamless booking experiences for thrill seekers.",
+      tags: ["HTML", "CSS"],
+      img: project1Img,
+      link: "https://sarahmadeeh111-lgtm.github.io/My-Project/"
+    },
+    {
+      id: 2,
+      title: "Capital Shop",
+      desc: "An elegant e-commerce coffee store showcasing premium coffee beans, specialty drinks, and rich coffee brewing accessories with modern design.",
+      tags: ["HTML5", "CSS3"],
+      img: project2Img,
+      link: "https://sarahmadeeh111-lgtm.github.io/Project2/"
+    },
+    {
+      id: 3,
+      title: "Perfume Store",
+      desc: "A luxurious online fragrance boutique displaying exclusive perfume collections with a sleek, highly responsive Tailwind CSS layout.",
+      tags: ["HTML", "Tailwind"],
+      img: project3Img,
+      link: "https://sarahmadeeh111-lgtm.github.io/tailwind/"
+    },
+    {
+      id: 4,
+      title: "Velvet Coca",
+      desc: "An interactive gourmet chocolate store presenting handcrafted dark and milk chocolates with rich user interactions and smooth UI components.",
+      tags: ["JavaScript", "HTML", "CSS"],
+      img: project4Img,
+      link: "https://sarahmadeeh111-lgtm.github.io/My-Project4/"
+    },
+    {
+      id: 5,
+      title: "Techno Market",
+      desc: "A modern tech accessories and electronics e-commerce store designed with Tailwind CSS featuring clean product categories and responsive design.",
+      tags: ["HTML", "Tailwind"],
+      img: project6Img,
+      link: "https://sarahmadeeh111-lgtm.github.io/project6/"
+    },
+    {
+      id: 6,
+      title: "Portfolio",
+      desc: "A modern personal frontend developer portfolio built with React and Tailwind CSS highlighting interactive projects and dynamic technical skills.",
+      tags: ["React", "HTML", "CSS"],
+      img: project5Img,
+      link: "#"
+    }
+  ];
+
+  const filteredProjects = myProjects.filter(p => {
+    if (activeTab === "Web Apps") return p.id !== 6;
+    if (activeTab === "Portfolio") return p.id === 6;
+    return true;
+  });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -145,13 +205,20 @@ function App() {
     setIsSubmitted(true);
   };
 
+  const socialLinks = [
+    { icon: 'fa-linkedin-in', link: 'https://www.linkedin.com/in/sarah-madeeh-6b19bb407?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
+    { icon: 'fa-facebook-f', link: 'https://www.facebook.com/share/1Czsroy7si/' },
+    { icon: 'fa-instagram', link: 'https://www.instagram.com/sia_________________________?igsh=MTRseDZ3OTZrbWFkNw==' },
+    { icon: 'fa-github', link: 'https://github.com/sarahmadeeh111-lgtm' }
+  ];
+
   return (
     <div className="bg-[#080b11] min-h-screen text-white font-sans selection:bg-purple-600 selection:text-white overflow-x-hidden pt-20">
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#080b11]/90 border-b border-gray-800/60 shadow-lg">
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#080b11]/85 border-b border-gray-800/80 shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block shadow-[0_0_12px_#3b82f6]"></span>
             <span className="text-2xl font-bold tracking-tight text-white">Portfolio</span>
           </div>
 
@@ -163,8 +230,8 @@ function App() {
                 onClick={() => setActiveNav(item)}
                 className={`transition-all duration-300 py-1 ${
                   activeNav === item
-                    ? 'text-white font-semibold'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]'
+                    : 'text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)]'
                 }`}
               >
                 {item}
@@ -174,18 +241,13 @@ function App() {
 
           <div className="flex items-center space-x-4">
             <div className="hidden lg:flex items-center space-x-3">
-              {[
-                { icon: 'fa-linkedin-in', link: 'https://linkedin.com' },
-                { icon: 'fa-facebook-f', link: 'https://facebook.com' },
-                { icon: 'fa-instagram', link: 'https://instagram.com' },
-                { icon: 'fa-github', link: 'https://github.com' }
-              ].map((social, idx) => (
+              {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-gray-900/80 border border-gray-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:border-transparent transition-all duration-300 shadow-sm"
+                  className="w-9 h-9 rounded-full bg-gray-900/80 border border-gray-800/90 flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:border-cyan-400/60 hover:shadow-[0_0_18px_rgba(147,51,234,0.55)] transition-all duration-300 shadow-sm"
                 >
                   <i className={`fab ${social.icon} text-sm`}></i>
                 </a>
@@ -194,7 +256,7 @@ function App() {
 
             <a
               href="#contact"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
+              className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium px-6 py-2.5 rounded-full text-sm transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.35)] hover:shadow-[0_0_30px_rgba(147,51,234,0.65)]"
             >
               Let's Connect
             </a>
@@ -206,8 +268,8 @@ function App() {
       <section id="home" className="min-h-[88vh] flex items-center max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
           <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center space-x-2 bg-gray-900/90 border border-gray-800 px-4 py-2 rounded-full text-xs font-medium text-gray-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <div className="inline-flex items-center space-x-2 bg-gray-900/90 border border-gray-800/90 hover:border-emerald-500/50 px-4 py-2 rounded-full text-xs font-medium text-gray-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-colors duration-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"></span>
               <span>Available for opportunities</span>
             </div>
 
@@ -217,10 +279,10 @@ function App() {
               </h1>
               
               <div className="text-3xl sm:text-5xl font-bold h-16 flex items-center">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 drop-shadow-[0_0_15px_rgba(99,102,241,0.25)]">
                   {currentText}
                 </span>
-                <span className="w-1 h-10 bg-blue-500 inline-block ml-1 animate-pulse"></span>
+                <span className="w-1 h-10 bg-blue-500 inline-block ml-1 animate-pulse shadow-[0_0_12px_#3b82f6]"></span>
               </div>
             </div>
 
@@ -232,13 +294,13 @@ function App() {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 rounded-full text-sm transition-all duration-300 shadow-lg shadow-blue-600/30"
+                className="inline-flex items-center justify-center h-12 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 rounded-full text-sm transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.7)]"
               >
                 View My Projects
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center h-12 bg-gray-900/90 hover:bg-gray-800 text-white border border-gray-700/80 font-semibold px-7 rounded-full text-sm transition-all duration-300"
+                className="inline-flex items-center justify-center h-12 bg-gray-900/90 hover:bg-gray-800 text-white border border-gray-700/80 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] font-semibold px-7 rounded-full text-sm transition-all duration-300"
               >
                 Get In Touch
               </a>
@@ -246,8 +308,8 @@ function App() {
           </div>
 
           <div className="lg:col-span-5 flex justify-center items-center relative py-10">
-            <div className="w-full max-w-[350px] bg-[#121824] border border-gray-800 rounded-2xl p-4 relative card-box-shadow flex flex-col justify-between font-mono text-xs leading-relaxed overflow-visible">
-              <div className="flex items-center space-x-3 pb-2 mb-2 border-b border-gray-800/60">
+            <div className="w-full max-w-[350px] bg-[#121824]/95 border border-gray-800/90 hover:border-indigo-500/60 rounded-2xl p-4 relative shadow-[0_15px_35px_rgba(0,0,0,0.85)] hover:shadow-[0_0_35px_rgba(99,102,241,0.3)] transition-all duration-500 flex flex-col justify-between font-mono text-xs leading-relaxed overflow-visible">
+              <div className="flex items-center space-x-3 pb-2 mb-2 border-b border-gray-800/80">
                 <div className="flex space-x-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
                   <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
@@ -307,18 +369,18 @@ function App() {
                 </div>
               </div>
 
-              <div className="mt-2 pt-2 border-t border-gray-800/60 flex items-center space-x-2">
+              <div className="mt-2 pt-2 border-t border-gray-800/80 flex items-center space-x-2">
                 <span className="text-gray-400">&gt;</span>
                 <span className="text-blue-400 animate-pulse font-semibold">ready_to_build()</span>
                 <span className="text-emerald-400 font-bold">✓</span>
               </div>
 
-              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-purple-600 to-indigo-600 border border-purple-400/40 px-2.5 py-1 rounded-xl shadow-lg animate-float-up flex items-center space-x-1.5 z-20 font-sans">
+              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-purple-600 to-indigo-600 border border-purple-400/50 px-2.5 py-1 rounded-xl shadow-[0_0_20px_rgba(147,51,234,0.5)] animate-float-up flex items-center space-x-1.5 z-20 font-sans">
                 <i className="fab fa-react text-cyan-400 text-[11px]"></i>
                 <span className="text-[9px] font-semibold text-white">React JS</span>
               </div>
 
-              <div className="absolute -bottom-3 -left-3 bg-gradient-to-r from-blue-600 to-cyan-600 border border-blue-400/40 px-2.5 py-1 rounded-xl shadow-lg animate-float-down flex items-center space-x-1.5 z-20 font-sans">
+              <div className="absolute -bottom-3 -left-3 bg-gradient-to-r from-blue-600 to-cyan-600 border border-blue-400/50 px-2.5 py-1 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.5)] animate-float-down flex items-center space-x-1.5 z-20 font-sans">
                 <i className="fas fa-code text-white text-[9px]"></i>
                 <span className="text-[9px] font-semibold text-white">Clean Code</span>
               </div>
@@ -328,7 +390,7 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-24 bg-[#0a0e17] border-y border-gray-800/40 relative">
+      <section id="skills" className="py-20 bg-[#0a0e17] border-y border-gray-800/60 relative">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <span className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-2 block">
             TECHNICAL EXPERTISE
@@ -336,7 +398,7 @@ function App() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Front-End Skills
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto mb-16 text-sm sm:text-base leading-relaxed">
+          <p className="text-gray-400 max-w-xl mx-auto mb-12 text-sm sm:text-base leading-relaxed">
             The front-end technologies I use to build modern, responsive web experiences.
           </p>
 
@@ -344,10 +406,10 @@ function App() {
             <button 
               onClick={prevSkills} 
               disabled={skillsPage === 0}
-              className={`w-9 h-9 rounded-full bg-gray-900 border border-gray-800 text-white flex items-center justify-center transition-all z-20 shadow-md ${
+              className={`w-9 h-9 rounded-full bg-gray-900 border border-gray-800/90 text-white flex items-center justify-center transition-all z-20 shadow-md ${
                 skillsPage === 0 
                   ? 'opacity-30 cursor-not-allowed pointer-events-none' 
-                  : 'opacity-100 hover:bg-gray-800'
+                  : 'opacity-100 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:border-cyan-400 hover:shadow-[0_0_18px_rgba(56,189,248,0.5)]'
               }`}
             >
               ❮
@@ -367,23 +429,23 @@ function App() {
             <button 
               onClick={nextSkills} 
               disabled={skillsPage === totalPages - 1}
-              className={`w-9 h-9 rounded-full bg-gray-900 border border-gray-800 text-white flex items-center justify-center transition-all z-20 shadow-md ${
+              className={`w-9 h-9 rounded-full bg-gray-900 border border-gray-800/90 text-white flex items-center justify-center transition-all z-20 shadow-md ${
                 skillsPage === totalPages - 1 
                   ? 'opacity-30 cursor-not-allowed pointer-events-none' 
-                  : 'opacity-100 hover:bg-gray-800'
+                  : 'opacity-100 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:border-cyan-400 hover:shadow-[0_0_18px_rgba(56,189,248,0.5)]'
               }`}
             >
               ❯
             </button>
           </div>
 
-          <div className="flex justify-center items-center space-x-2 mt-12">
+          <div className="flex justify-center items-center space-x-2 mt-8">
             {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setSkillsPage(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  skillsPage === idx ? 'w-8 bg-blue-500' : 'w-2.5 bg-gray-700 hover:bg-gray-500'
+                  skillsPage === idx ? 'w-8 bg-gradient-to-r from-blue-500 to-indigo-500 shadow-[0_0_10px_#3b82f6]' : 'w-2.5 bg-gray-700 hover:bg-gray-500 hover:shadow-[0_0_6px_#9ca3af]'
                 }`}
               />
             ))}
@@ -391,25 +453,27 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 bg-[#080b11]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <span className="text-xs uppercase tracking-widest text-purple-400 font-semibold mb-2 block">
-            PORTFOLIO SHOWCASE
+      {/* Featured Projects Section */}
+      <section id="projects" className="py-20 bg-[#080b11]">
+        <div className="max-w-[1150px] mx-auto px-6 text-center">
+          <span className="text-xs uppercase tracking-widest text-blue-500 font-bold mb-2 block tracking-widest">
+            MY WORK
           </span>
-          <h3 className="text-3xl sm:text-4xl font-bold mb-4">My Projects</h3>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
-            My name is Sara Madeeh. These are some of my projects built with modern frontend tools.
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+            Featured Projects
+          </h2>
+          <p className="text-gray-400 max-w-xl mx-auto mb-8 text-xs sm:text-sm leading-relaxed">
+            Real-world applications built with modern technologies and best practices.
           </p>
 
-          <div className="flex justify-center bg-gray-900/80 max-w-lg mx-auto rounded-full p-1.5 border border-gray-800 mb-12 shadow-inner">
-            {Object.keys(projects).map((tab) => (
+          <div className="flex justify-center bg-[#0d121f] max-w-sm mx-auto rounded-full p-1 border border-gray-800/90 mb-10 shadow-[inset_0_2px_10px_rgba(0,0,0,0.8)]">
+            {["All Projects", "Web Apps", "Portfolio"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-2.5 px-4 rounded-full text-sm font-semibold transition-all ${
+                className={`flex-1 py-1.5 px-4 rounded-full text-xs font-semibold transition-all duration-300 ${
                   activeTab === tab 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg' 
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.45)]' 
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
@@ -418,17 +482,62 @@ function App() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects[activeTab].map((project) => (
-              <div key={project.id} className="relative group overflow-hidden rounded-2xl aspect-video cursor-pointer border border-gray-800/80 bg-[#121824]">
-                <img 
-                  src={project.img} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080b11] via-[#080b11]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-left">
-                  <h4 className="text-xl font-bold text-white mb-1">{project.title}</h4>
-                  <p className="text-xs text-gray-300">{project.desc}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            {filteredProjects.map((project) => (
+              <div 
+                key={project.id} 
+                className="bg-[#0b0f19] border border-gray-800/80 rounded-xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/60 hover:shadow-[0_10px_35px_rgba(79,70,229,0.22)] transition-all duration-300"
+              >
+                <div className="relative h-40 overflow-hidden bg-[#070a12]">
+                  <img 
+                    src={project.img} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    {project.link !== "#" ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)] hover:shadow-[0_0_25px_rgba(99,102,241,0.7)] transition-all transform translate-y-2 group-hover:translate-y-0"
+                      >
+                        <span>View Project</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 bg-gray-800/90 text-gray-300 text-xs font-bold px-4 py-2 rounded-full shadow-lg transition-all transform translate-y-2 group-hover:translate-y-0 cursor-not-allowed">
+                        <span>View Project</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="p-4 flex flex-col justify-between flex-1">
+                  <div>
+                    <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-[11px] text-gray-400 leading-relaxed mb-4 line-clamp-3">
+                      {project.desc}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-gray-800/50">
+                    {project.tags.map((tag, idx) => (
+                      <span 
+                        key={idx} 
+                        className="bg-[#121827] text-blue-300 text-[10px] font-medium px-2 py-0.5 rounded border border-gray-800 group-hover:border-blue-500/40 transition-colors duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -437,25 +546,25 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-[#0a0c16] relative">
-        <div className="max-w-6xl mx-auto px-6 text-center mb-12">
+      <section id="contact" className="py-20 bg-[#0a0c16] relative">
+        <div className="max-w-6xl mx-auto px-6 text-center mb-10">
           <span className="text-xs uppercase tracking-widest text-indigo-400 font-semibold mb-2 block">
             SAY HELLO
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Get In Touch
           </h2>
-          <div className="w-12 h-0.5 bg-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <div className="w-12 h-0.5 bg-blue-500 mx-auto mb-4 shadow-[0_0_8px_#3b82f6]"></div>
+          <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">
             Open to freelance projects, internships, and full-time opportunities.<br />
             Let's build something great together.
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          <div className="bg-[#101426] border border-gray-800/80 p-8 rounded-3xl flex flex-col justify-between text-left shadow-xl">
+          <div className="bg-[#101426] border border-gray-800/80 hover:border-indigo-500/50 p-8 rounded-3xl flex flex-col justify-between text-left shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] transition-all duration-300">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-xl mb-6">
+              <div className="w-12 h-12 rounded-xl bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-xl mb-6 shadow-[0_0_15px_rgba(168,85,247,0.25)]">
                 👩‍💻
               </div>
 
@@ -478,7 +587,7 @@ function App() {
                 <span className="text-blue-400 text-base mt-0.5">✉️</span>
                 <div>
                   <span className="text-xs text-gray-400 block font-medium">Email</span>
-                  <a href="mailto:sarahmadeeh111@gmail.com" className="text-sm text-gray-200 hover:text-blue-400 transition-colors">
+                  <a href="mailto:sarahmadeeh111@gmail.com" className="text-sm text-gray-200 hover:text-cyan-300 hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.5)] transition-all">
                     sarahmadeeh111@gmail.com
                   </a>
                 </div>
@@ -494,12 +603,12 @@ function App() {
             </div>
           </div>
 
-          <div className="bg-[#101426] border border-gray-800/80 p-8 rounded-3xl flex flex-col justify-between text-left shadow-xl min-h-[420px]">
+          <div className="bg-[#101426] border border-gray-800/80 hover:border-indigo-500/50 p-8 rounded-3xl flex flex-col justify-between text-left shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] transition-all duration-300 min-h-[420px]">
             <h3 className="text-lg font-bold text-white mb-6">Send a Message</h3>
 
             {isSubmitted ? (
               <div className="flex-1 flex flex-col items-center justify-center text-center space-y-3 py-12">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl font-bold mb-2">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl font-bold mb-2 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                   ✓
                 </div>
                 <h4 className="text-xl font-bold text-cyan-400">
@@ -517,13 +626,13 @@ function App() {
                       type="text" 
                       placeholder="First Name" 
                       required 
-                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-sm text-white placeholder-gray-500" 
+                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-sm text-white placeholder-gray-500 transition-all duration-300" 
                     />
                     <input 
                       type="text" 
                       placeholder="Last Name" 
                       required 
-                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-sm text-white placeholder-gray-500" 
+                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-sm text-white placeholder-gray-500 transition-all duration-300" 
                     />
                   </div>
 
@@ -532,12 +641,12 @@ function App() {
                       type="email" 
                       placeholder="Email Address" 
                       required 
-                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-sm text-white placeholder-gray-500" 
+                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-sm text-white placeholder-gray-500 transition-all duration-300" 
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone No. (optional)" 
-                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-sm text-white placeholder-gray-500" 
+                      className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-sm text-white placeholder-gray-500 transition-all duration-300" 
                     />
                   </div>
 
@@ -545,13 +654,13 @@ function App() {
                     rows="4" 
                     placeholder="Your message..." 
                     required 
-                    className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-sm text-white placeholder-gray-500 resize-none"
+                    className="w-full bg-[#090c17] border border-gray-800/90 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-sm text-white placeholder-gray-500 resize-none transition-all duration-300"
                   ></textarea>
                 </div>
 
                 <button 
                   type="submit" 
-                  className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 text-sm shadow-md mt-4"
+                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 text-sm shadow-[0_4px_15px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] mt-4"
                 >
                   Send Message
                 </button>
@@ -561,11 +670,10 @@ function App() {
         </div>
       </section>
 
-      {/* Footer Section (معدل: ارتفاع أقل وهوامش جانبية موسعة قليلاً لتناسب التصميم الرشيق) */}
-      <footer className="bg-[#060810] text-gray-400 pt-10 pb-8 border-t border-gray-800/55">
+      {/* Footer Section */}
+      <footer className="bg-[#060810] text-gray-400 pt-10 pb-8 border-t border-gray-800/60">
         <div className="max-w-7xl mx-auto px-8 md:px-12">
           
-          {/* Top Newsletter / Stay Updated Bar */}
           <div className="flex flex-col md:flex-row items-center justify-between pb-8 mb-8 border-b border-gray-800/60 gap-4">
             <div className="text-left">
               <h3 className="text-base font-bold text-white mb-0.5">Stay Updated</h3>
@@ -576,23 +684,21 @@ function App() {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="bg-[#0b0e1b] border border-gray-800 rounded-xl px-4 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 w-full sm:w-64"
+                className="bg-[#0b0e1b] border border-gray-800 rounded-xl px-4 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_12px_rgba(99,102,241,0.3)] w-full sm:w-64 transition-all"
               />
               <button 
                 type="submit" 
-                className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-5 py-2 rounded-xl transition-all shadow-md shrink-0"
+                className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-5 py-2 rounded-xl transition-all shadow-[0_0_12px_rgba(79,70,229,0.3)] hover:shadow-[0_0_20px_rgba(79,70,229,0.6)] shrink-0"
               >
                 Subscribe
               </button>
             </form>
           </div>
 
-          {/* Main Footer Links */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-left pb-10 border-b border-gray-800/40">
-            {/* Column 1: Portfolio Info & Social Links */}
             <div className="md:col-span-5 space-y-3">
               <div className="flex items-center space-x-2">
-                <span className="w-2 h-2 rounded-full bg-blue-500 inline-block"></span>
+                <span className="w-2 h-2 rounded-full bg-blue-500 inline-block shadow-[0_0_8px_#3b82f6]"></span>
                 <span className="text-base font-bold text-white tracking-tight">Portfolio</span>
               </div>
               <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
@@ -600,18 +706,13 @@ function App() {
               </p>
               
               <div className="flex items-center space-x-2.5 pt-1">
-                {[
-                  { icon: 'fa-linkedin-in', link: 'https://linkedin.com' },
-                  { icon: 'fa-facebook-f', link: 'https://facebook.com' },
-                  { icon: 'fa-instagram', link: 'https://instagram.com' },
-                  { icon: 'fa-github', link: 'https://github.com' }
-                ].map((social, idx) => (
+                {socialLinks.map((social, idx) => (
                   <a
                     key={idx}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-7 h-7 rounded-full border border-gray-800 bg-[#0a0d18] flex items-center justify-center text-gray-400 hover:text-white hover:border-indigo-500 hover:bg-indigo-600/20 transition-all duration-300 text-[11px] shadow-sm cursor-pointer"
+                    className="w-7 h-7 rounded-full border border-gray-800 bg-[#0a0d18] flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-400/80 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-all duration-300 text-[11px] shadow-sm cursor-pointer"
                   >
                     <i className={`fab ${social.icon}`}></i>
                   </a>
@@ -619,7 +720,6 @@ function App() {
               </div>
             </div>
 
-            {/* Column 2: Navigation Links */}
             <div className="md:col-span-3 space-y-2">
               <h4 className="text-xs font-semibold text-white tracking-wider uppercase mb-2">Navigation</h4>
               <ul className="space-y-1.5 text-xs">
@@ -627,7 +727,7 @@ function App() {
                   <li key={item}>
                     <a 
                       href={`#${item.toLowerCase()}`}
-                      className="text-gray-400 hover:text-white hover:font-medium transition-all duration-200 block py-0.5 cursor-pointer"
+                      className="text-gray-400 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] transition-all duration-200 block py-0.5 cursor-pointer"
                     >
                       {item}
                     </a>
@@ -636,7 +736,6 @@ function App() {
               </ul>
             </div>
 
-            {/* Column 3: What I Do */}
             <div className="md:col-span-4 space-y-2">
               <h4 className="text-xs font-semibold text-white tracking-wider uppercase mb-2">What I Do</h4>
               <ul className="space-y-1.5 text-xs">
@@ -655,7 +754,6 @@ function App() {
             </div>
           </div>
 
-          {/* Bottom Copyright Text */}
           <div className="pt-6 text-center text-[11px] text-gray-500 tracking-wide">
             © 2026 Sara Madeeh -- All Rights Reserved
           </div>
